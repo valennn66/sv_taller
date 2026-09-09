@@ -31,3 +31,9 @@ def app(environ, start_response):
         next_id += 1
         tasks.append(new_task)
         return response(start_response, '201 Created', new_task)
+
+if __name__ == "__main__":
+    port = 9292
+    with make_server("0.0.0.0", port, app) as server:
+        print(f"Serving on http://localhost:{port}")
+        server.serve_forever()
